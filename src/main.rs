@@ -5,8 +5,12 @@ fn main() {
     println!("Do you want to play a guessing game?");
     println!("Press 'y' if you want to play and 'n' if you don't");
 
-    let response = evaluate_user_response();
-    println!("{}", response);
+    let mut wants_to_play = evaluate_user_response();
+    while wants_to_play {
+        play_game();
+        println!("Do you want to play again? If so press 'y', if not press 'n'");
+        wants_to_play = evaluate_user_response();
+    }
 }
 
 fn play_game() { 
@@ -25,7 +29,6 @@ fn play_game() {
             println!("Go higher!");
         }
     }
-    println!("Do you want to play again? If so press 'y', if not press 'n'");
 }
 
 fn evaluate_user_response() -> bool {
