@@ -1,4 +1,5 @@
 use std::io;
+use rand::Rng;
 
 fn main() {
 
@@ -14,16 +15,16 @@ fn main() {
 }
 
 fn play_game() { 
-    let answer = 31;
+    let number_to_be_guessed = rand::thread_rng().gen_range(0..100);
     println!("Guess the number!");
     loop {
         let mut number_guessed = String::new();
         io::stdin().read_line(&mut number_guessed).expect("failed to read line");
         let conversion: i32 = number_guessed.trim().parse().expect("Gimme the right thing");
-        if conversion > answer {
+        if conversion > number_to_be_guessed {
             println!("Go lower!");
-        } else if conversion == answer {
-            println!("That's the answer!");
+        } else if conversion == number_to_be_guessed {
+            println!("You got it!");
             break;
         } else {
             println!("Go higher!");
